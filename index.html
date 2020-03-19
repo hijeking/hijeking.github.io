@@ -8,6 +8,7 @@
         <a href="q.html">희재킹이란</a> <br>
         <a class="cat_btn" href="cat.jpg" download>고양이사진다운로드</a><br>
         
+	    
         <script language="JavaScript">
 
 	var timerID; // 타이머를 핸들링하기 위한 전역 변수
@@ -60,8 +61,6 @@
 
 
 
-	/* 정수형 숫자(초 단위)를 "시:분:초" 형태로 표현하는 함수 */
-
 	function toHourMinSec(t) { 
 
 		var hour;
@@ -72,8 +71,6 @@
 
 
 
-		// 정수로부터 남은 시, 분, 초 단위 계산
-
 		hour = Math.floor(t / 3600);
 
 		min = Math.floor( (t-(hour*3600)) / 60 );
@@ -81,26 +78,18 @@
 		sec = t - (hour*3600) - (min*60);
 
 
-
-		// hh:mm:ss 형태를 유지하기 위해 한자리 수일 때 0 추가
-
 		if(hour < 10) hour = "0" + hour;
 
 		if(min < 10) min = "0" + min;
 
 		if(sec < 10) sec = "0" + sec;
 
-
-
 		return(hour + ":" + min + ":" + sec);
-
 	}
-
+start_timer()
+		
 </script>
 
-
-
-출처: https://skylit.tistory.com/51 [초코아빠*]
       
     </body>
 </html>
