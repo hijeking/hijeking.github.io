@@ -5,65 +5,6 @@
 	    
 	   <script type="text/javascript">
 
-    document.addEventListener("DOMContentLoaded", function() {
-
-
-
-        // 시간을 딜레이 없이 나타내기위한 선 실행
-
-        realTimer();
-
-
-
-        // 이후 0.5초에 한번씩 시간을 갱신한다.
-
-        setInterval(realTimer, 500);
-
-    });
-
-
-
-    // 시간을 출력
-
-    function realTimer() {
-
-		const nowDate = new Date();
-
-		const year = nowDate.getFullYear();
-
-		const month= nowDate.getMonth() + 1;
-
-		const date = nowDate.getDate();
-
-		const hour = nowDate.getHours();
-
-		const min = nowDate.getMinutes();
-
-		const sec = nowDate.getSeconds();
-
-		document.getElementById("nowTimes").innerHTML = 
-
-                  year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
-
-	}
-
-
-
-        // 1자리수의 숫자인 경우 앞에 0을 붙여준다.
-
-	function addzero(num) {
-
-		if(num < 10) { num = "0" + num; }
-
- 		return num;
-
-	}
-
-</script>
-	    
-    </head>
-    
-	      <SCRIPT LANGUAGE="JavaScript">
 	
 $(document).ready(function(){
   tid=setInterval('msg_time()',1000); // 타이머 1초간격으로 수행
@@ -90,15 +31,12 @@ function msg_time() {
   }
 }
 	   </script>
-
+ 
+    </head>
+    
 	
 	  <body>
-		  
-		  	
-
-	
-		  
-		  
+		   
 		  
 		  
         <a href="http://www.copy112.or.kr/monitor" target="_blank">신고도구</a> <br>
@@ -107,6 +45,5 @@ function msg_time() {
 
 <p>남은시간 : <span id="timer"></span></p>
      
-		   <h1>■ 현재시간 : <span id="nowTimes"></span></h1>
     </body>
 </html>
