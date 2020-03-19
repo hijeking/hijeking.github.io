@@ -5,61 +5,33 @@
         <title>히재킹</title>
 	    
 	<script type="text/javascript">
+function diff(date1, date2) {
+    var diff = date2 - date1;
+    var diffH = Math.floor((diff % 86400000) / 3600000);            // 시간
+    var diffM = Math.floor(((diff % 86400000) % 3600000) / 60000);  // 분
+    var diffS = Math.floor(diff / 1000 % 60);                       // 초
 
-    document.addEventListener("DOMContentLoaded", function() {
+    if (Math.sign(diff) === -1) { // 음수 check
+        return '퇴근시간이 지났어요...'
+    } else {
+        return '퇴근시간까지: ' + [diffH < 10 ? '0' + diffH : diffH, diffM < 10 ? '0' + diffM : diffM, diffS < 10 ? '0' + diffS : diffS].join(':') + '남음 ;;'
+    }
+}
 
+function solution(n) {
+    var nowDate = new Date();
+    var exitDate = new Date(); // 17:30:00
 
+    var input_arr = n.split(':');
 
-        // 시간을 딜레이 없이 나타내기위한 선 실행
+    exitDate.setHours(input_arr[0]);
+    exitDate.setMinutes(input_arr[1]);
+    exitDate.setSeconds(input_arr[2]);
 
-        realTimer();
+    console.log(diff(nowDate, exitDate))
+}
 
-
-
-        // 이후 0.5초에 한번씩 시간을 갱신한다.
-
-        setInterval(realTimer, 500);
-
-    });
-
-
-
-    // 시간을 출력
-
-    function realTimer() {
-
-		const nowDate = new Date();
-
-		const year = nowDate.getFullYear();
-
-		const month= nowDate.getMonth() + 1;
-
-		const date = nowDate.getDate();
-
-		const hour = nowDate.getHours();
-
-		const min = nowDate.getMinutes();
-
-		const sec = nowDate.getSeconds();
-
-		document.getElementById("nowTimes").innerHTML = 
-
-                  year + "-" + addzero(month) + "-" + addzero(date) + "&nbsp;" + hour + ":" + addzero(min) + ":" + addzero(sec);
-
-	}
-
-
-
-        // 1자리수의 숫자인 경우 앞에 0을 붙여준다.
-
-	function addzero(num) {
-
-		if(num < 10) { num = "0" + num; }
-
- 		return num;
-
-	}
-
+solution('17:00:00'); // 퇴근 시간
 </script>
 	    
 	
@@ -81,7 +53,6 @@
         <a href="q.html">희재킹이란</a> <br>
         <a class="cat_btn" href="cat.jpg" download>고양이사진다운로드</a><br>
 
-   <h1>■ 현재시간 : <span id="nowTimes"></span></h1>
 		  
      
     </body>
