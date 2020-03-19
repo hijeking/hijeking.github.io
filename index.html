@@ -4,60 +4,13 @@
         <title>히재킹</title>
     </head>
     
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-
-<script language="javascript">
-
+    <script>
+	
 $(document).ready(function(){
- //초기값
- var hour = 12;
- var minute = 00;
- var second = 2;
- 
- // 초기화
- $(".countTimeHour").html(hour);
- $(".countTimeMinute").html(minute);
- $(".countTimeSecond").html(second);
- 
- var timer = setInterval(function () {
-  // 설정
-  $(".countTimeHour").html(hour);
-  $(".countTimeMinute").html(minute);
-  $(".countTimeSecond").html(second);
-  
-  if(second == 0 && minute == 0 && hour == 0){
-   alert('타이머 종료.');
-   clearInterval(timer); /* 타이머 종료 */
-  }else{
-   second--;
-   if(second<10){
-    $(".countTimeSecond").html('0' + second);
-   }
-  
-   // 분처리
-   if(second == 0){
-    minute--;
-    second = 59;
-   }
-   if(minute<10){
-    $(".countTimeMinute").html('0' + minute);
-   }
-   
-   //시간처리
-   if(minute == 0){
-    if(hour > 0){
-     hour--;
-     minute = 59;
-    }    
-   }
-   if(hour<10){
-    $(".countTimeHour").html('0' + hour);
-   }
-  }
- }, 1000); /* millisecond 단위의 인터벌 */
+  tid=setInterval('msg_time()',1000); // 타이머 1초간격으로 수행
 });
 
-</script>
+	
 	
 	
     <body>
@@ -65,14 +18,30 @@ $(document).ready(function(){
         <a href="q.html">희재킹이란</a> <br>
         <a class="cat_btn" href="cat.jpg" download>고양이사진다운로드</a><br>
 	
-	 <div>
-  <strong>시간 카운트</strong>
-  <span class="countTimeHour">60</span>시
-  <span class="countTimeMinute">60</span>분
-  <span class="countTimeSecond">60</span>초
- </div>
+var stDate = new Date().getTime();
+var edDate = new Date('2018-10-25 24:00:00').getTime(); // 종료날짜
+var RemainDate = edDate - stDate;
+ 
+function msg_time() {
+  var hours = Math.floor((RemainDate % (1000 * 60 * 60 * 24)) / (1000*60*60));
+  var miniutes = Math.floor((RemainDate % (1000 * 60 * 60)) / (1000*60));
+  var seconds = Math.floor((RemainDate % (1000 * 60)) / 1000);
+  
+  m = hours + ":" +  miniutes + ":" + seconds ; // 남은 시간 text형태로 변경
+  
+  document.all.timer.innerHTML = m;   // div 영역에 보여줌 
+  
+  if (RemainDate < 0) {      
+    // 시간이 종료 되었으면..
+    clearInterval(tid);   // 타이머 해제
+  }else{
+    RemainDate = RemainDate - 1000; // 남은시간 -1초
+  }
+}
+	    
+	</script>
 
-
+<p>남은시간 : <span id="timer"></span></p>
      
     </body>
 </html>
